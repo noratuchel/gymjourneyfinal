@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="de">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Home | Gym Journey</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+        <link href="../styles/style.css" rel="stylesheet">
+        <link href="../styles/private.css" rel="stylesheet">
+        <script src="../scripts/private.js"></script>
+    </head>
+            
+        <body>
+        <nav class= "navbar navbar-expand-md navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="privatepage.html">
+                    <img src="../img/logo.png" alt="logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class ="collape navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class ="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class ="nav-link" href="#">Training</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class ="nav-link" href="#">Ernährung</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class ="nav-link" href="#">Yoga</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class ="nav-link" href="index.html">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+
+        <div id="slides" class="carousel slide" data-ride="carousel">
+            <ul class="carousel-indicators">
+                <li data-target="#slides" data-slide-to="0" class="active"></li>
+                <li data-target="#slides" data-slide-to="1"></li>
+                <li data-target="#slides" data-slide-to="2"></li>
+            </ul>
+            <div class ="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../img/training1.jpg" alt="training">
+                </div>
+                <div class="carousel-item">
+                    <img src="../img/yoga1.jpg" alt="yoga">
+                </div>
+                <div class="carousel-item">
+                    <img src="../img/ernaehrung1.jpg" alt="ernährung">
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid padding">
+            <div class="row welcome text-center">
+                <div class="col-12">
+                    <h1 class="display-4">Neue Posts</h1>
+                </div>
+                <hr>
+                <div class="col-12">
+                    <p class="lead">Siehe die neusten Posts zum Thema Training, Yoga und Ernährung</p>
+                </div>
+            </div>
+            <div class ="col-xs-2 icons">
+                <i class="far fa-edit"></i>
+            </div>
+            </div>
+            
+            <div class="container mt-3  mb-5"> 
+            <div class="media border mb-3 p-3">
+                <img src="../img/profil4.jpg" alt="John Doe" class="mr-3 mt-3 rounded-circle">
+                <div class="media-body">
+                    <h4>Marla <small><i>vor 10 Minuten</i></small></h4>
+                    <div class ="col-xs-2 blog">
+                        <p>Gewicht 01.01.20: 100kg </p>
+                        <p>Gewicht 01.05.20: 94kg</p>
+                        <p>Gewicht 01.10.20: 90kg</p>
+                    </div>
+                    <div class ="col-xs-2 icons">
+                        <i class="far fa-thumbs-up icon-10x"></i>
+                        <i class="far fa-comment"></i>
+                        <i class="far fa-paper-plane"></i>
+                    </div> 
+                </div>
+            </div>
+            <div class="media border mb-3 p-3">
+                <img src="../img/profil2.jpg" alt="John Doe" class="mr-3 mt-3 rounded-circle">
+                <div class="media-body">
+                    <h4>Lea <small><i>vor 1 Stunde</i></small></h4>
+                    <div class ="col-xs-2 blog">
+                        <p>Beim Squatten hab ich heute 55kg statt 50kg gehoben. Ich habe zwar nur 8 Wiederholungen geschafft, aber immerhin! Langsam aber sicher werde ich stärker!!</p>
+                    </div>
+                    <div class ="col-xs-2 icons">
+                        <i class="far fa-thumbs-up icon-10x"></i>
+                        <i class="far fa-comment"></i>
+                        <i class="far fa-paper-plane"></i>
+                    </div> 
+                </div>
+            </div>
+            <div class="media border mb-3 p-3">
+                
+                <img src="../img/profil3.jpeg" alt="John Doe" class="mr-3 mt-3 rounded-circle">
+                <div class="media-body">
+                    <h4>Sammie <small><i>vor 3 Stunden</i></small></h4>
+                    <div class ="col-xs-2 blog">
+                        <p>Hey Leute ich habe gerade mal ein neuen Eiweißshake für nach dem Training kreiert. Hier ist das Reszept: <button onclick="revealMessage()" id="read">mehr lesen</button></p>
+                        <div class ="col-xs-2 blog"  id="hiddenMessage">
+                        <p>300ml Milch</p>
+                        <p>100g Magerquark</p>
+                        <p>100g Heidelbeeren (frisch oder tiefgefroren)</p>
+                        <p>zwei Esslöffel gemahlene Mandeln</p>
+                        <p>drei Esslöffel Haferflocken</p>
+                        <p>ein Teelöffel Honig</p>
+                        <p>Die Zutaten gut mixen und genießen. Lasst mich wissen wie es euch geschmeckt hat!</p>
+                            <figure>
+                            <img class="img-fluid" src="../img/drink1.jpg" alt="Taube">
+                        </figure>
+                        </div>
+                    </div> 
+                    <div class ="col-xs-2 icons">
+                        <i class="far fa-thumbs-up icon-10x"></i>
+                        <i class="far fa-comment"></i>
+                        <i class="far fa-paper-plane"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="media border mb-3 p-3">
+                <img src="../img/profil1.jpg" alt="John Doe" class="mr-3 mt-3 rounded-circle">
+                <div class="media-body">
+                    <h4>Emilia <small><i>vor 5 Stunden</i></small></h4>
+                    <div class ="col-xs-2 blog">
+                        <p>So klappt's mit der Taube im Yoga - auch als Anfänger! Die Taube schenkt uns gleichzeitig eine tiefe Hüft- und Herzöffnung. Für Anfänger kann das eine ganz schöne Herausforderung sein. So kommst Du leicht in die Taube hinein: <button onclick="revealMessage2()" id="read2">mehr lesen</button></p>
+                        <div class ="col-xs-2 blog"  id="hiddenMessage2">
+                        <p>1. Starte im Vierfüßlerstand oder dem herabschauenden Hund. Bringe das rechte Knie nach vorne und lege es angewinkelt vor Dir ab. Strecke das linke Bein gerade hinter Dir aus. </p>
+                        <p>2. Der rechte Fuß darf nahe an der Hüfte bleiben. Oder Du kannst ihn weiter nach vorne bewegen, bis das Schienbein parallel zur Stirnseite der Matte ausgerichtet ist.</p>
+                        <p>3.Achte darauf, dass Deine Hüften gerade ausgerichtet sind und kein Hüftknochen nach hinten oder vorne ausweicht. Leg Dir gern ein Kissen unter, wenn die Hüfte in der Luft schwebt.</p>
+                        <p>4. Stütze Dich mit der rechten Hand ab und greife mit der linken Hand Deinen hinteren Fuß. Das linke Bein winkelst Du dazu an.</p>
+                        <p>5.Wenn Du weitergehen möchtest, bringe den linken Fuß in Deine Armbeuge. Als nächstes, löse die rechte Hand vom Boden, bringe sie über Deinen Kopf und greife Deine linke Hand. Um noch tiefer in die Dehnung zu gehen, fasse Deinen hinteren Fuß mit beiden Händen und führe ihn in Richtung Deines Kopfes.</p>
+                        <p>6. Genieße die Öffnung im Brustraum und in der Hüfte.</p>
+                        <p>7. Komme dann langsam zurück in Deine Ausgangsposition und wechsle die Seiten.</p>
+                        <p>Am Ende wirst Du überrascht sein, wie weit Du in die Taube hineingehen konntest. ;) Probiere es aus!</p>
+
+                        <figure>
+                            <img class="img-fluid" src="../img/figur1.jpg" alt="Taube">
+                        </figure>
+                        </div>
+                    </div>
+                    <div class ="col-xs-2 icons">
+                        <i class="far fa-thumbs-up icon-10x"></i>
+                        <i class="far fa-comment"></i>
+                        <i class="far fa-paper-plane"></i>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        
+        <hr class="my-4">
+
+        <div class="container-fluid padding">
+            <div class="row text-center padding">
+                <div class="col-12">
+                    <h2>Bleib verbunden</h2>
+                </div>
+                <div class="col-12 social padding">
+                    <a href="https://www.facebook.com/">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://twitter.com/?lang=de">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.gmail.com/mail/help/intl/en/about.html?utm_expid=...">
+                        <i class="fab fa-google-plus-g"></i>
+                    </a>
+                    <a href="https://www.instagram.com/?hl=de">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/?gl=DE">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+            
+        <footer>
+            <div class="container-fluid padding">
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <img src="../img/logo.png" alt="logo">
+                        <hr class="light-first">
+                        <p>030 1234567</p>
+                        <p>email@gymjourney.de</p>
+                        <p>12345 Berlin</p>
+                    </div>
+                    <div class="col-md-4">
+                        <hr class="light">
+                        <h5>Rechtliches</h5>
+                        <hr class="light">
+                        <p>AGB</p>
+                        <p>Datenschutz</p>
+                        <p>Impressum</p>
+                    </div>
+                    <div class="col-md-4">
+                        <hr class="light">
+                        <h5>Unternehmen</h5>
+                        <hr class="light">
+                        <p>Jobs</p>
+                        <p>Hilfe und Support</p>
+                        <p>Presse</p>
+                    </div>
+                    <div class="col-12">
+                         <hr class="light-100">
+                        <h5>&copy; gymjourney.de</h5>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
+
+
+
+

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>Registrieren | Gym Journey</title>
+  <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+	<link href="../styles/style.css" rel="stylesheet">
+    <link href="../styles/form.css" rel="stylesheet">
+</head>
+    
+<body>
+    <nav class= "navbar navbar-expand-md navbar-light bg-light stick-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="../img/logo.png" alt="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class ="collape navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class ="nav-link" href="index.html">Gym Journey</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class ="nav-link" href="#">Über uns</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class ="nav-link" href="#">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class ="nav-link" href="#">Kontakt</a>
+                    </li>
+                   <li class="nav-item active">
+                        <a class ="nav-link" href="#">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6 mb-5">
+                <div id="ui">
+                    <h2 class="text-center">Registrieren</h2>
+                   <form class="form-group" action="privatepage.html">
+                       <div class="row">
+                           <div class="col-lg-6 mb-3">
+                            <label>Vorname</label>
+                            <input type="text" name="fname" class="form-control" placeholder="Vorname">
+                           </div>
+                           <div class="col-lg-6 mb-3">
+                            <label>Nachname</label>
+                            <input type="text" name="lname" class="form-control" placeholder="Nachname">
+                           </div>
+                       </div>
+                       <label>Benutzername</label>
+                       <input type="text" name="uname" class="form-control" placeholder="Benutzername" id="uname">
+                       
+                       <label>E-Mail</label>
+                       <input type="email" name="email" class="form-control" placeholder="Email-Adresse" >
+
+                       <div class="row">
+                           <div class="col-lg-6 mt-3">
+                            <label>Passwort</label>
+                            <input type="password" name="pw" class="form-control" placeholder="Passwort">
+                           </div>
+                           <div class="col-lg-6 mt-3 mb-3">
+                            <label>Passwort wiederholen</label>
+                            <input type="text" name="pw" class="form-control" placeholder="Passwort erneut">
+                           </div>
+                           <input type="submit" name="submit" value="Account anlegen" id="submit" class="btn btn-info btn-block btn-lg">
+                       </div>
+                    </form> 
+                </div>
+            </div>
+            <div class="col-lg-3"></div>
+        
+        </div>
+    </div>
+    <div class="container-fluid padding mt-5">
+        <div class="row text-center padding">
+            <div class="col-12">
+                <h2>Bleib verbunden</h2>
+            </div>
+            <div class="col-12 social padding">
+                <a href="https://www.facebook.com/">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://twitter.com/?lang=de">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.gmail.com/mail/help/intl/en/about.html?utm_expid=...">
+                    <i class="fab fa-google-plus-g"></i>
+                </a>
+                <a href="https://www.instagram.com/?hl=de">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.youtube.com/?gl=DE">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container-fluid padding">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <img src="../img/logo.png" alt="logo">
+                    <hr class="light-first">
+                    <p>030 1234567</p>
+                    <p>email@gymjourney.de</p>
+                    <p>12345 Berlin</p>
+                </div>
+                <div class="col-md-4">
+                    <hr class="light">
+                    <h5>Rechtliches</h5>
+                    <hr class="light">
+                    <p>AGB</p>
+                    <p>Datenschutz</p>
+                    <p>Impressum</p>
+                </div>
+                <div class="col-md-4">
+                    <hr class="light">
+                    <h5>Unternehmen</h5>
+                    <hr class="light">
+                    <p>Jobs</p>
+                    <p>Hilfe und Support</p>
+                    <p>Presse</p>
+                </div>
+                <div class="col-12">
+                     <hr class="light-100">
+                    <h5>&copy; gymjourney.de</h5>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+</body>
+</html>
+
