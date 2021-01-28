@@ -2,7 +2,6 @@ import { createBrowserHistory } from "history";
 import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 import "./styles/App.css";
 import { isLoggedIn } from "./utils";
-import AdminLogin from "./views/AdminLoginView.js";
 import AdminSignUp from "./views/AdminSignUpView";
 import AdminUserView from "./views/AdminUserView";
 // Alle Components/Views importieren
@@ -40,11 +39,7 @@ function App() {
           path="/logout"
           render={(...props) => <Logout {...props} />}
         />
-        <Route
-          exact
-          path="/adminlogin"
-          render={(...props) => <AdminLogin {...props} />}
-        />
+
         {/*        <Route
           exact
           path="/adminregistration"

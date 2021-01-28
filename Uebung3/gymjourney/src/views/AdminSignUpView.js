@@ -23,8 +23,14 @@ class LoginView extends React.Component {
       email: "",
       password: "",
       passwordConfirm: "",
+      showNavBarStatus: false,
     };
   }
+  handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    this.setState({ redirectToLogout: true });
+  };
 
   // event   { target: { name: "email", value: "r"   }  }
   rewriteValue = (event) =>
@@ -62,22 +68,10 @@ class LoginView extends React.Component {
       <div>
         {this.props.signedUpUser ? <Redirect to="/login" /> : ""}
         {isAdminLoggedIn() ? "" : <Redirect to="/home" />}
-        {console.log("THIS IS SIGN UP ERROR", this.props.signUpError)}
-        {console.log("THIS IS PROPS", this.props)}
-        {console.log("THIS IS USER REDUCER", this.props.signedUpUser)}
 
-        <title>Registrieren | Gym Journey</title>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link
-          rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        />
-        <link href="../styles/style.css" rel="stylesheet" />
-        <link href="../styles/form.css" rel="stylesheet" />
         <nav className="navbar navbar-expand-md navbar-light bg-light stick-top">
           <div className="container-fluid">
-            <a className="navbar-brand" href="index.html">
+            <a className="navbar-brand" href="/home">
               <img src="./assets/pictures/logo.png" alt="logo" />
             </a>
             <button
@@ -85,34 +79,62 @@ class LoginView extends React.Component {
               type="button"
               data-toggle="collapse"
               data-target="#navbarResponsive"
+              onClick={() =>
+                this.setState({
+                  showNavBarStatus: !this.state.showNavBarStatus,
+                })
+              }
             >
               <span className="navbar-toggler-icon" />
             </button>
-            <div className="collape navbar-collapse" id="navbarResponsive">
+            <div
+              className="collape navbar-collapse"
+              id="navbarResponsive"
+              style={{
+                display: this.state.showNavBarStatus ? "inline" : "none",
+              }}
+            >
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <a className="nav-link" href="index.html">
+                  <a className="nav-link" href="/home">
                     Gym Journey
                   </a>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Über uns
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    FAQ
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Kontakt
-                  </a>
-                </li>
+                {isAdminLoggedIn() ? (
+                  <>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/adminusers">
+                        Users
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/adminregistration">
+                        Registration
+                      </a>
+                    </li>{" "}
+                  </>
+                ) : (
+                  <>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/#">
+                        Training
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/#">
+                        Ernährung
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/#">
+                        Yoga
+                      </a>
+                    </li>
+                  </>
+                )}
                 <li className="nav-item active">
-                  <a className="nav-link" href="#">
-                    Login
+                  <a className="nav-link" onClick={() => this.handleLogout()}>
+                    Logout
                   </a>
                 </li>
               </ul>
@@ -135,7 +157,7 @@ class LoginView extends React.Component {
               <div id="ui">
                 <h2 className="text-center">Registrieren</h2>
                 <form className="form-group" action="privatepage.html">
-                  <label>E-Mail</label>
+                  <label>Bitte Felder ausfüllen</label>
                   <input
                     type="text"
                     name="firstname"
@@ -160,38 +182,30 @@ class LoginView extends React.Component {
                     value={this.state.email}
                     onChange={(event) => this.rewriteValue(event)}
                   />
-                  <div className="row">
-                    <div className="col-lg-6 mt-3">
-                      <label>Passwort</label>
-                      <input
-                        type="password"
-                        name="password"
-                        className="form-control"
-                        placeholder="Passwort"
-                        value={this.state.password}
-                        onChange={(event) => this.rewriteValue(event)}
-                      />
-                    </div>
-                    <div className="col-lg-6 mt-3 mb-3">
-                      <label>Passwort wiederholen</label>
-                      <input
-                        type="password"
-                        name="passwordConfirm"
-                        className="form-control"
-                        placeholder="Passwort erneut"
-                        value={this.state.passwordConfirm}
-                        onChange={(event) => this.rewriteValue(event)}
-                        onKeyDown={(event) => this.handleKeyDown(event)}
-                      />
-                    </div>
-                    <input
-                      name="submit"
-                      defaultValue="Account anlegen"
-                      id="submit"
-                      className="btn btn-info btn-block btn-lg"
-                      onClick={() => this.handleSignUp()}
-                    />
-                  </div>
+                  <input
+                    type="password"
+                    name="password"
+                    className="form-control"
+                    placeholder="Passwort"
+                    value={this.state.password}
+                    onChange={(event) => this.rewriteValue(event)}
+                  />
+                  <input
+                    type="password"
+                    name="passwordConfirm"
+                    className="form-control"
+                    placeholder="Passwort erneut"
+                    value={this.state.passwordConfirm}
+                    onChange={(event) => this.rewriteValue(event)}
+                    onKeyDown={(event) => this.handleKeyDown(event)}
+                  />
+                  <input
+                    name="submit"
+                    defaultValue="Account anlegen"
+                    id="submit"
+                    className="btn btn-info btn-block btn-lg"
+                    onClick={() => this.handleSignUp()}
+                  />
                   {this.props.signUpError ? (
                     <p style={{ color: "red" }}>
                       Registrieren ist fehlgeschlagen.

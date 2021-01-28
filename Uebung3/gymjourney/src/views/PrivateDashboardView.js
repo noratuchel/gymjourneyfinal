@@ -18,6 +18,7 @@ import { createPost, getPosts } from "../actions/index.js";
 import NewPost from "../components/NewPost.js";
 import Post from "../components/Post.js";
 import "../styles/private.css";
+import { isAdminLoggedIn } from "../utils";
 
 /* A template for a more complex React component  */
 class PrivateDashboardView extends React.Component {
@@ -28,6 +29,7 @@ class PrivateDashboardView extends React.Component {
       redirectToLogout: false,
       showNewPost: false,
       postCounter: 0,
+      showNavBarStatus: false,
     };
     this.handleNewPost = this.handleNewPost.bind(this);
   }
@@ -44,7 +46,6 @@ class PrivateDashboardView extends React.Component {
   };
 
   handleNewPost(content) {
-    console.log("hierr", jwt.decode(localStorage.getItem("token")));
     this.props.createPost(
       localStorage.getItem("token"),
       content,
@@ -53,6 +54,9 @@ class PrivateDashboardView extends React.Component {
     );
     this.setState({ postCounter: this.state.postCounter + 1 });
     this.props.getPosts(localStorage.getItem("token"));
+    setTimeout(() => {
+      this.props[0].history.go(0);
+    }, 1000);
   }
 
   componentDidMount() {
@@ -64,15 +68,6 @@ class PrivateDashboardView extends React.Component {
     return (
       <div>
         {this.state.redirectToLogout ? <Redirect to="/" /> : ""}
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Home | Gym Journey</title>
-        <link
-          rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        />
-        <link href="../styles/style.css" rel="stylesheet" />
-        <link href="../styles/private.css" rel="stylesheet" />
         <nav className="navbar navbar-expand-md navbar-light bg-light">
           <div className="container-fluid">
             <a className="navbar-brand" href="/home">
@@ -83,33 +78,66 @@ class PrivateDashboardView extends React.Component {
               type="button"
               data-toggle="collapse"
               data-target="#navbarResponsive"
+              onClick={() =>
+                this.setState({
+                  showNavBarStatus: !this.state.showNavBarStatus,
+                })
+              }
             >
               <span className="navbar-toggler-icon" />
             </button>
-            <div className="collape navbar-collapse" id="navbarResponsive">
+            <div
+              className="collape navbar-collapse"
+              id="navbarResponsive"
+              style={{
+                display: this.state.showNavBarStatus ? "inline" : "none",
+              }}
+            >
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item active">
-                  <a className="nav-link" href="#">
+                  <a className="nav-link" href="/#">
                     Home
                   </a>
                 </li>
+
+                {isAdminLoggedIn() ? (
+                  <>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/adminusers">
+                        Users
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/adminregistration">
+                        Registration
+                      </a>
+                    </li>{" "}
+                  </>
+                ) : (
+                  <>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/#">
+                        Training
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/#">
+                        Ernährung
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/#">
+                        Yoga
+                      </a>
+                    </li>
+                  </>
+                )}
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Training
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Ernährung
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Yoga
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" onClick={() => this.handleLogout()}>
+                  <a
+                    className="nav-link"
+                    onClick={() => this.handleLogout()}
+                    href="/#"
+                  >
                     Logout
                   </a>
                 </li>
@@ -156,16 +184,21 @@ class PrivateDashboardView extends React.Component {
             ""
           )}
           {this.props.posts
-            ? this.props.posts.map((post) => (
-                <Post
-                  content={post.content}
-                  posttime={formatDistanceToNow(Date.parse(post.date), {
-                    includeSeconds: true,
-                    locale: deLocale,
-                  })}
-                  firstname={post.firstname}
-                />
-              ))
+            ? this.props.posts
+                .sort((a, b) =>
+                  Date.parse(b.date) > Date.parse(a.date) ? 1 : -1
+                )
+                .map((post, index) => (
+                  <Post
+                    key={index}
+                    content={post.content}
+                    posttime={formatDistanceToNow(Date.parse(post.date), {
+                      includeSeconds: true,
+                      locale: deLocale,
+                    })}
+                    firstname={post.firstname}
+                  />
+                ))
             : "loading..."}
         </div>
         <hr className="my-4" />

@@ -7,8 +7,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { connect } from "react-redux"; // Verbindung zu Reducer/Speicher
-import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import { loginUser } from "../actions/index.js";
 import "../styles/form.css";
 import "../styles/style.css";
@@ -19,7 +18,8 @@ class LoginView extends React.Component {
     this.state = {
       email: "",
       password: "",
-      redirectToLogin: false,
+      linkToLogin: false,
+      showNavBarStatus: false,
     };
   }
 
@@ -32,10 +32,12 @@ class LoginView extends React.Component {
     // Gefüllter String ist truthy und leerer String ist falsy
     if (this.state.email && this.state.password) {
       this.props.loginUser(this.state.email, this.state.password);
-      this.setState({ redirectToLogin: true });
+      setTimeout(() => {
+        this.props[0].history.push("/home");
+        this.props[0].history.go(0);
+      }, 1500);
     }
   };
-
   handleKeyDown = (event) => {
     if (event.key === "Enter") {
       this.handleLogin();
@@ -45,16 +47,6 @@ class LoginView extends React.Component {
   render() {
     return (
       <div>
-        {this.state.redirectToLogin ? <Redirect to="/home" /> : ""}
-        <title>Login | Gym Journey</title>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link
-          rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        />
-        <link href="../styles/style.css" rel="stylesheet" />
-        <link href="../styles/form.css" rel="stylesheet" />
         <nav className="navbar navbar-expand-md navbar-light bg-light">
           <div className="container-fluid">
             <a className="navbar-brand" href="/">
@@ -65,10 +57,21 @@ class LoginView extends React.Component {
               type="button"
               data-toggle="collapse"
               data-target="#navbarResponsive"
+              onClick={() =>
+                this.setState({
+                  showNavBarStatus: !this.state.showNavBarStatus,
+                })
+              }
             >
               <span className="navbar-toggler-icon" />
             </button>
-            <div className="collape navbar-collapse" id="navbarResponsive">
+            <div
+              className="collape navbar-collapse"
+              id="navbarResponsive"
+              style={{
+                display: this.state.showNavBarStatus ? "inline" : "none",
+              }}
+            >
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <a className="nav-link" href="/">
@@ -76,22 +79,22 @@ class LoginView extends React.Component {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <a className="nav-link" href="/#">
                     Über uns
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <a className="nav-link" href="/#">
                     FAQ
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <a className="nav-link" href="/#">
                     Kontakt
                   </a>
                 </li>
                 <li className="nav-item active">
-                  <a className="nav-link" href="#">
+                  <a className="nav-link" href="/#">
                     Login
                   </a>
                 </li>

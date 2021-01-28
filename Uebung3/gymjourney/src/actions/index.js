@@ -213,7 +213,6 @@ export const editUser = (
   if (role) {
     Object.assign(userData, { role: role });
   }
-  console.log("hier ", userData);
   dispatch({
     type: EDIT_USER_FETCHING,
   });
@@ -248,7 +247,6 @@ export const CREATE_POST_FAILURE = "CREATE_POST_FAILURE";
 export const createPost = (token, content, user_id, firstname) => (
   dispatch
 ) => {
-  console.log("fn", firstname);
   dispatch({
     type: CREATE_POST_FETCHING,
   });

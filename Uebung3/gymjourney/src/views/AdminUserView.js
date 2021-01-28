@@ -22,6 +22,7 @@ class AdminUserView extends React.Component {
     this.state = {
       redirectToLogout: false,
       deletionCounter: 0,
+      showNavBarStatus: false,
     };
     this.handleDelete = this.handleDelete.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
@@ -64,18 +65,9 @@ class AdminUserView extends React.Component {
       <div>
         {this.state.redirectToLogout ? <Redirect to="/" /> : ""}
         {isAdminLoggedIn() ? "" : <Redirect to="/home" />}
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Home | Gym Journey</title>
-        <link
-          rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        />
-        <link href="../styles/style.css" rel="stylesheet" />
-        <link href="../styles/private.css" rel="stylesheet" />
         <nav className="navbar navbar-expand-md navbar-light bg-light">
           <div className="container-fluid">
-            <a className="navbar-brand" href="privatepage.html">
+            <a className="navbar-brand" href="/home">
               <img src="./assets/pictures/logo.png" alt="logo" />
             </a>
             <button
@@ -83,33 +75,65 @@ class AdminUserView extends React.Component {
               type="button"
               data-toggle="collapse"
               data-target="#navbarResponsive"
+              onClick={() =>
+                this.setState({
+                  showNavBarStatus: !this.state.showNavBarStatus,
+                })
+              }
             >
               <span className="navbar-toggler-icon" />
             </button>
-            <div className="collape navbar-collapse" id="navbarResponsive">
+            <div
+              className="collape navbar-collapse"
+              id="navbarResponsive"
+              style={{
+                display: this.state.showNavBarStatus ? "inline" : "none",
+              }}
+            >
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item active">
-                  <a className="nav-link" href="#">
+                  <a className="nav-link" href="/home">
                     Home
                   </a>
                 </li>
+                {isAdminLoggedIn() ? (
+                  <>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/adminusers">
+                        Users
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/adminregistration">
+                        Registration
+                      </a>
+                    </li>{" "}
+                  </>
+                ) : (
+                  <>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/#">
+                        Training
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/#">
+                        Ernährung
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/#">
+                        Yoga
+                      </a>
+                    </li>
+                  </>
+                )}
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Training
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Ernährung
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Yoga
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" onClick={() => this.handleLogout()}>
+                  <a
+                    className="nav-link"
+                    onClick={() => this.handleLogout()}
+                    href="/#"
+                  >
                     Logout
                   </a>
                 </li>
@@ -132,8 +156,9 @@ class AdminUserView extends React.Component {
         </div>
         <div className="container mt-3  mb-5">
           {this.props.users
-            ? this.props.users.map((user) => (
+            ? this.props.users.map((user, index) => (
                 <User
+                  key={index}
                   firstname={user.firstname}
                   surname={user.surname}
                   email={user.email}
