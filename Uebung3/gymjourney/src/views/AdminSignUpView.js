@@ -66,7 +66,7 @@ class LoginView extends React.Component {
   render() {
     return (
       <div>
-        {this.props.signedUpUser ? <Redirect to="/login" /> : ""}
+        {this.props.signedUpUser ? <Redirect to="/adminusers" /> : ""}
         {isAdminLoggedIn() ? "" : <Redirect to="/home" />}
 
         <nav className="navbar navbar-expand-md navbar-light bg-light stick-top">
