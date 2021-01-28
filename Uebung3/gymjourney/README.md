@@ -19,7 +19,7 @@ GymJourney ist eine Plattform auf der sich Sportbegeisterte miteinander in Form 
 
 3. **Umgebungsvariablen benutzen**
 
-   folgende Umgebungsvariablen müssen vorhanden sein und je nach Variante (lokal/live) angepasst werden:
+   folgende Umgebungsvariablen müssen vorhanden sein und je nach Deploy (lokal/live) angepasst werden:
 
    ```
    REACT_APP_BACKEND_URL
