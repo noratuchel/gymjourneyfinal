@@ -7,7 +7,8 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { connect } from "react-redux";
+import { connect } from "react-redux"; // Verbindung zu Reducer/Speicher
+import { Redirect } from "react-router-dom";
 import { loginUser } from "../actions/index.js";
 import "../styles/form.css";
 import "../styles/style.css";
@@ -18,7 +19,7 @@ class LoginView extends React.Component {
     this.state = {
       email: "",
       password: "",
-      linkToLogin: false,
+      redirectToLogin: false,
     };
   }
 
@@ -31,13 +32,10 @@ class LoginView extends React.Component {
     // Gefüllter String ist truthy und leerer String ist falsy
     if (this.state.email && this.state.password) {
       this.props.loginUser(this.state.email, this.state.password);
-      console.log("THIS IS PROPS", this.props[0].history);
-      setTimeout(() => {
-        this.props[0].history.push("/home");
-        this.props[0].history.go(0);
-      }, 1500);
+      this.setState({ redirectToLogin: true });
     }
   };
+
   handleKeyDown = (event) => {
     if (event.key === "Enter") {
       this.handleLogin();
@@ -47,6 +45,7 @@ class LoginView extends React.Component {
   render() {
     return (
       <div>
+        {this.state.redirectToLogin ? <Redirect to="/home" /> : ""}
         <title>Login | Gym Journey</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

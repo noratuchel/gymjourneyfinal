@@ -42,7 +42,7 @@ const NewPost = (props) => {
             {...bindcontent}
           />
           <Button
-            style={{ color: "#ffff", backgroundColor: "#1764a4" }}
+            style={{ color: "#b9defd", backgroundColor: "#1764a4" }}
             onClick={() => props.handleCreatePostCallback(content)}
           >
             Post erstellen

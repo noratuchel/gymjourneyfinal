@@ -1,17 +1,27 @@
-import {
-  faFacebook,
-  faGooglePlusG,
-  faInstagram,
-  faTwitter,
-  faYoutube,
-} from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { connect } from "react-redux"; // Verbindung zu Reducer/Speicher
 import { Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faYoutube,
+  faTwitter,
+  faInstagram,
+  faGooglePlusG,
+  faFacebook,
+  faApple,
+} from "@fortawesome/free-brands-svg-icons";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import {
+  fas,
+  faCheckSquare,
+  faCoffee,
+} from "@fortawesome/free-solid-svg-icons";
+
 import { loginUser } from "../actions/index.js";
-import "../styles/form.css";
 import "../styles/style.css";
+import "../styles/form.css";
 
 class AdminLoginView extends React.Component {
   constructor(props) {

@@ -1,8 +1,5 @@
-import sendAlt from "@iconify-icons/carbon/send-alt";
-import commentDots from "@iconify-icons/fa-regular/comment-dots";
-import thumbsUp from "@iconify-icons/fa/thumbs-up";
-import { Icon } from "@iconify/react";
 import React from "react";
+
 const Post = (props) => {
   return (
     <div className="media border mb-3 p-3">
@@ -20,9 +17,9 @@ const Post = (props) => {
         </h4>
         <div className="col-xs-2 blog">{props.content}</div>
         <div className="col-xs-2 icons">
-          <Icon icon={thumbsUp} />
-          <Icon icon={commentDots} />
-          <Icon icon={sendAlt} />
+          <i className="far fa-thumbs-up icon-10x" />
+          <i className="far fa-comment" />
+          <i className="far fa-paper-plane" />
         </div>
       </div>
     </div>

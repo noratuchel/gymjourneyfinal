@@ -75,7 +75,7 @@ class AdminUserView extends React.Component {
         <link href="../styles/private.css" rel="stylesheet" />
         <nav className="navbar navbar-expand-md navbar-light bg-light">
           <div className="container-fluid">
-            <a className="navbar-brand" href="/home">
+            <a className="navbar-brand" href="privatepage.html">
               <img src="./assets/pictures/logo.png" alt="logo" />
             </a>
             <button
@@ -89,7 +89,7 @@ class AdminUserView extends React.Component {
             <div className="collape navbar-collapse" id="navbarResponsive">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item active">
-                  <a className="nav-link" href="/home">
+                  <a className="nav-link" href="#">
                     Home
                   </a>
                 </li>
