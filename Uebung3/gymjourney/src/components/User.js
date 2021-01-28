@@ -66,6 +66,7 @@ const User = (props) => {
         <Button
           variant="info"
           onClick={() => setShowEditInputs(!showEditInputs)}
+          style={{ margin: "5px" }}
         >
           bearbeiten
         </Button>
@@ -73,6 +74,7 @@ const User = (props) => {
         <Button
           variant="info"
           onClick={() => setShowDeleteDialog(!showDeleteDialog)}
+          style={{ margin: "5px" }}
         >
           löschen
         </Button>

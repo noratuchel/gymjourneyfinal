@@ -18,6 +18,7 @@ import { createPost, getPosts } from "../actions/index.js";
 import NewPost from "../components/NewPost.js";
 import Post from "../components/Post.js";
 import "../styles/private.css";
+import { isAdminLoggedIn } from "../utils";
 
 /* A template for a more complex React component  */
 class PrivateDashboardView extends React.Component {
@@ -53,6 +54,9 @@ class PrivateDashboardView extends React.Component {
     );
     this.setState({ postCounter: this.state.postCounter + 1 });
     this.props.getPosts(localStorage.getItem("token"));
+    setTimeout(() => {
+      this.props[0].history.go(0);
+    }, 1000);
   }
 
   componentDidMount() {
@@ -93,21 +97,39 @@ class PrivateDashboardView extends React.Component {
                     Home
                   </a>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Training
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Ernährung
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Yoga
-                  </a>
-                </li>
+
+                {isAdminLoggedIn() ? (
+                  <>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/adminusers">
+                        Users
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link" href="/adminregistration">
+                        Registration
+                      </a>
+                    </li>{" "}
+                  </>
+                ) : (
+                  <>
+                    <li className="nav-item">
+                      <a className="nav-link" href="#">
+                        Training
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link" href="#">
+                        Ernährung
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link" href="#">
+                        Yoga
+                      </a>
+                    </li>
+                  </>
+                )}
                 <li className="nav-item">
                   <a className="nav-link" onClick={() => this.handleLogout()}>
                     Logout
@@ -156,16 +178,20 @@ class PrivateDashboardView extends React.Component {
             ""
           )}
           {this.props.posts
-            ? this.props.posts.map((post) => (
-                <Post
-                  content={post.content}
-                  posttime={formatDistanceToNow(Date.parse(post.date), {
-                    includeSeconds: true,
-                    locale: deLocale,
-                  })}
-                  firstname={post.firstname}
-                />
-              ))
+            ? this.props.posts
+                .sort((a, b) =>
+                  Date.parse(b.date) > Date.parse(a.date) ? 1 : -1
+                )
+                .map((post) => (
+                  <Post
+                    content={post.content}
+                    posttime={formatDistanceToNow(Date.parse(post.date), {
+                      includeSeconds: true,
+                      locale: deLocale,
+                    })}
+                    firstname={post.firstname}
+                  />
+                ))
             : "loading..."}
         </div>
         <hr className="my-4" />

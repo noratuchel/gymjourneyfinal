@@ -25,6 +25,11 @@ class LoginView extends React.Component {
       passwordConfirm: "",
     };
   }
+  handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    this.setState({ redirectToLogout: true });
+  };
 
   // event   { target: { name: "email", value: "r"   }  }
   rewriteValue = (event) =>
@@ -77,7 +82,7 @@ class LoginView extends React.Component {
         <link href="../styles/form.css" rel="stylesheet" />
         <nav className="navbar navbar-expand-md navbar-light bg-light stick-top">
           <div className="container-fluid">
-            <a className="navbar-brand" href="index.html">
+            <a className="navbar-brand" href="/home">
               <img src="./assets/pictures/logo.png" alt="logo" />
             </a>
             <button
@@ -91,7 +96,7 @@ class LoginView extends React.Component {
             <div className="collape navbar-collapse" id="navbarResponsive">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <a className="nav-link" href="index.html">
+                  <a className="nav-link" href="/home">
                     Gym Journey
                   </a>
                 </li>
@@ -111,8 +116,8 @@ class LoginView extends React.Component {
                   </a>
                 </li>
                 <li className="nav-item active">
-                  <a className="nav-link" href="#">
-                    Login
+                  <a className="nav-link" onClick={() => this.handleLogout()}>
+                    Logout
                   </a>
                 </li>
               </ul>
@@ -135,7 +140,7 @@ class LoginView extends React.Component {
               <div id="ui">
                 <h2 className="text-center">Registrieren</h2>
                 <form className="form-group" action="privatepage.html">
-                  <label>E-Mail</label>
+                  <label>Bitte Felder ausfüllen</label>
                   <input
                     type="text"
                     name="firstname"
@@ -160,38 +165,30 @@ class LoginView extends React.Component {
                     value={this.state.email}
                     onChange={(event) => this.rewriteValue(event)}
                   />
-                  <div className="row">
-                    <div className="col-lg-6 mt-3">
-                      <label>Passwort</label>
-                      <input
-                        type="password"
-                        name="password"
-                        className="form-control"
-                        placeholder="Passwort"
-                        value={this.state.password}
-                        onChange={(event) => this.rewriteValue(event)}
-                      />
-                    </div>
-                    <div className="col-lg-6 mt-3 mb-3">
-                      <label>Passwort wiederholen</label>
-                      <input
-                        type="password"
-                        name="passwordConfirm"
-                        className="form-control"
-                        placeholder="Passwort erneut"
-                        value={this.state.passwordConfirm}
-                        onChange={(event) => this.rewriteValue(event)}
-                        onKeyDown={(event) => this.handleKeyDown(event)}
-                      />
-                    </div>
-                    <input
-                      name="submit"
-                      defaultValue="Account anlegen"
-                      id="submit"
-                      className="btn btn-info btn-block btn-lg"
-                      onClick={() => this.handleSignUp()}
-                    />
-                  </div>
+                  <input
+                    type="password"
+                    name="password"
+                    className="form-control"
+                    placeholder="Passwort"
+                    value={this.state.password}
+                    onChange={(event) => this.rewriteValue(event)}
+                  />
+                  <input
+                    type="password"
+                    name="passwordConfirm"
+                    className="form-control"
+                    placeholder="Passwort erneut"
+                    value={this.state.passwordConfirm}
+                    onChange={(event) => this.rewriteValue(event)}
+                    onKeyDown={(event) => this.handleKeyDown(event)}
+                  />
+                  <input
+                    name="submit"
+                    defaultValue="Account anlegen"
+                    id="submit"
+                    className="btn btn-info btn-block btn-lg"
+                    onClick={() => this.handleSignUp()}
+                  />
                   {this.props.signUpError ? (
                     <p style={{ color: "red" }}>
                       Registrieren ist fehlgeschlagen.
