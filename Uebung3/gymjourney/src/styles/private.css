@@ -1,0 +1,31 @@
+.rounded-circle {
+  width: 60px;
+}
+.blog {
+  width: 90%;
+}
+
+figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#hiddenMessage,
+#hiddenMessage2 {
+  display: none;
+}
+button {
+  font-size: 14px;
+  border: 0px solid red;
+  background-color: white;
+  color: grey;
+  text-decoration: none;
+}
+button:active {
+  text-decoration: none;
+}
+.icons {
+  float: right;
+  font-size: 25px;
+}
